@@ -6,7 +6,9 @@ import { TypingEffect } from '@/components/TypingEffect';
 import { ParallaxSection } from '@/components/ParallaxSection';
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { ProductCarousel } from '@/components/ProductCarousel';
-import { Star, Shield, Truck, Award, ArrowRight, CheckCircle } from 'lucide-react';
+import { SearchBar } from '@/components/SearchBar';
+import { Star, Shield, Truck, Award, ArrowRight, CheckCircle, Mail, Phone, MapPin, Facebook, Instagram, Twitter } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import heroImage from '@/assets/hero-bg.jpg';
 
 const Index = () => {
@@ -31,10 +33,11 @@ const Index = () => {
             </div>
             <div className="hidden md:flex items-center space-x-8">
               <a href="#produtos" className="text-foreground hover:text-primary transition-colors">Produtos</a>
-              <a href="#sobre" className="text-foreground hover:text-primary transition-colors">Sobre</a>
+              <Link to="/explore" className="text-foreground hover:text-primary transition-colors">Explorar</Link>
               <a href="#contato" className="text-foreground hover:text-primary transition-colors">Contato</a>
-              <Button className="hero-button">
-                Comprar Agora
+              <SearchBar />
+              <Button className="hero-button" asChild>
+                <Link to="/products">Comprar Agora</Link>
               </Button>
             </div>
           </div>
@@ -83,9 +86,11 @@ const Index = () => {
 
           <ScrollReveal delay={800}>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button className="hero-button text-lg px-8 py-4 group">
-                Explorar Coleção
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              <Button className="hero-button text-lg px-8 py-4 group" asChild>
+                <Link to="/explore">
+                  Explorar Coleção
+                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                </Link>
               </Button>
               <Button variant="outline" className="text-lg px-8 py-4 border-primary/30 hover:bg-primary hover:text-primary-foreground">
                 Ver Demonstração
@@ -191,9 +196,11 @@ const Index = () => {
               </ScrollReveal>
 
               <ScrollReveal delay={600}>
-                <Button className="hero-button text-xl px-12 py-6 group">
-                  Começar Agora
-                  <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-2 transition-transform" />
+                <Button className="hero-button text-xl px-12 py-6 group" asChild>
+                  <Link to="/products">
+                    Começar Agora
+                    <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-2 transition-transform" />
+                  </Link>
                 </Button>
               </ScrollReveal>
             </div>
@@ -202,19 +209,105 @@ const Index = () => {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 border-t border-border/20">
+      <footer id="contato" className="py-16 bg-secondary/20 border-t border-border/20">
         <div className="container mx-auto px-6">
-          <div className="text-center">
-            <div className="text-2xl font-bold gradient-text mb-4">
-              PREMIUM
+          <div className="grid md:grid-cols-4 gap-8 mb-8">
+            {/* Brand */}
+            <div className="space-y-4">
+              <div className="text-2xl font-bold gradient-text mb-4">
+                PREMIUM
+              </div>
+              <p className="text-muted-foreground">
+                Transformando experiências através da excelência e inovação constante.
+              </p>
+              <div className="flex space-x-4">
+                <Button variant="ghost" size="icon" className="hover:text-primary">
+                  <Facebook className="h-5 w-5" />
+                </Button>
+                <Button variant="ghost" size="icon" className="hover:text-primary">
+                  <Instagram className="h-5 w-5" />
+                </Button>
+                <Button variant="ghost" size="icon" className="hover:text-primary">
+                  <Twitter className="h-5 w-5" />
+                </Button>
+              </div>
             </div>
-            <p className="text-muted-foreground mb-6">
-              Transformando experiências através da excelência.
-            </p>
-            <div className="flex justify-center space-x-6">
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">Política de Privacidade</a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">Termos de Uso</a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">Contato</a>
+
+            {/* Navigation */}
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold">Navegação</h3>
+              <div className="space-y-2">
+                <Link to="/" className="block text-muted-foreground hover:text-primary transition-colors">
+                  Home
+                </Link>
+                <Link to="/products" className="block text-muted-foreground hover:text-primary transition-colors">
+                  Produtos
+                </Link>
+                <Link to="/explore" className="block text-muted-foreground hover:text-primary transition-colors">
+                  Explorar
+                </Link>
+                <a href="#contato" className="block text-muted-foreground hover:text-primary transition-colors">
+                  Contato
+                </a>
+              </div>
+            </div>
+
+            {/* Categories */}
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold">Categorias</h3>
+              <div className="space-y-2">
+                <a href="#" className="block text-muted-foreground hover:text-primary transition-colors">
+                  Premium Elite
+                </a>
+                <a href="#" className="block text-muted-foreground hover:text-primary transition-colors">
+                  Master Collection
+                </a>
+                <a href="#" className="block text-muted-foreground hover:text-primary transition-colors">
+                  Signature Series
+                </a>
+                <a href="#" className="block text-muted-foreground hover:text-primary transition-colors">
+                  Edição Limitada
+                </a>
+              </div>
+            </div>
+
+            {/* Contact */}
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold">Contato</h3>
+              <div className="space-y-3">
+                <div className="flex items-center gap-3 text-muted-foreground">
+                  <Mail className="h-4 w-4" />
+                  <span>contato@premium.com</span>
+                </div>
+                <div className="flex items-center gap-3 text-muted-foreground">
+                  <Phone className="h-4 w-4" />
+                  <span>(11) 99999-9999</span>
+                </div>
+                <div className="flex items-center gap-3 text-muted-foreground">
+                  <MapPin className="h-4 w-4" />
+                  <span>São Paulo, SP - Brasil</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom */}
+          <div className="pt-8 border-t border-border/20">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+              <p className="text-muted-foreground text-sm">
+                © 2024 Premium. Todos os direitos reservados.
+              </p>
+              <div className="flex space-x-6 text-sm">
+                <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+                  Política de Privacidade
+                </a>
+                <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+                  Termos de Uso
+                </a>
+                <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+                  Cookies
+                </a>
+              </div>
             </div>
           </div>
         </div>
