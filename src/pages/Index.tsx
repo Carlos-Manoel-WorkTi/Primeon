@@ -10,6 +10,8 @@ import { SearchBar } from '@/components/SearchBar';
 import { Star, Shield, Truck, Award, ArrowRight, CheckCircle, Mail, Phone, MapPin, Facebook, Instagram, Twitter } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import heroImage from '@/assets/hero-bg.jpg';
+import { FadeSlideUp } from '@/components/FadeSlideUp ';
+import { FadeSlide } from '@/components/FadeSlide';
 
 const Index = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -129,22 +131,31 @@ const Index = () => {
               { icon: Award, title: 'Qualidade Certificada', desc: 'Produtos com certificação internacional' },
               { icon: Star, title: 'Avaliação 5 Estrelas', desc: 'Mais de 10.000 clientes satisfeitos' }
             ].map((feature, index) => (
-              <ScrollReveal key={index} delay={index * 200} direction="up">
-                <Card className="p-6 text-center bg-secondary/20 border-border/20 hover:glow-box transition-all duration-500 group">
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4 group-hover:scale-110 transition-transform">
-                    <feature.icon className="h-8 w-8 text-primary" />
-                  </div>
-                  <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
-                  <p className="text-muted-foreground">{feature.desc}</p>
-                </Card>
-              </ScrollReveal>
+              <FadeSlide
+                key={index} // key aqui para o FadeSlide (envolvendo tudo)
+                direction={index > 1 ? "right": "left"} // alterna esquerda/direita
+                delay={100}
+                duration={1.2}
+              >
+                <ScrollReveal delay={index * 200} direction="up">
+                  <Card className="p-6 text-center bg-secondary/20 border-border/20 hover:glow-box transition-all duration-500 group">
+                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4 group-hover:scale-110 transition-transform">
+                      <feature.icon className="h-8 w-8 text-primary" />
+                    </div>
+                    <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
+                    <p className="text-muted-foreground">{feature.desc}</p>
+                  </Card>
+                </ScrollReveal>
+              </FadeSlide>
             ))}
+
           </div>
         </div>
       </section>
 
       {/* Products Section */}
       <section id="produtos" className="py-20">
+         <FadeSlideUp delay={200}>
         <div className="container mx-auto px-6">
           <ScrollReveal>
             <div className="text-center mb-16">
@@ -161,12 +172,13 @@ const Index = () => {
             <ProductCarousel />
           </ScrollReveal>
         </div>
+        </FadeSlideUp>
       </section>
 
       {/* CTA Section */}
       <section className="py-20 bg-secondary/10">
         <div className="container mx-auto px-6">
-          <ParallaxSection speed={0.2}>
+          <FadeSlideUp delay={200}>
             <div className="max-w-4xl mx-auto text-center">
               <ScrollReveal>
                 <h2 className="text-3xl md:text-5xl font-bold mb-6">
@@ -204,7 +216,7 @@ const Index = () => {
                 </Button>
               </ScrollReveal>
             </div>
-          </ParallaxSection>
+          </FadeSlideUp>
         </div>
       </section>
 

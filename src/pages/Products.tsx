@@ -11,6 +11,8 @@ import { Link } from 'react-router-dom';
 import product1 from '@/assets/product1.jpg';
 import product2 from '@/assets/product2.jpg';
 import product3 from '@/assets/product3.jpg';
+import { FadeSlideUp } from '@/components/FadeSlideUp ';
+import { FadeSlide } from '@/components/FadeSlide';
 
 const products = [
   {
@@ -164,9 +166,12 @@ const Products = () => {
         {/* Filters and Search */}
         <div className="flex flex-col md:flex-row gap-4 mb-8 p-6 bg-secondary/10 rounded-xl">
           <div className="flex-1">
-            <SearchBar onSearch={handleSearch} placeholder="Buscar por nome ou descrição..." />
+            <FadeSlide direction={"left"}  delay={100}duration={2}>
+               <SearchBar onSearch={handleSearch} placeholder="Buscar por nome ou descrição..." />
+            </FadeSlide>
           </div>
           <div className="flex gap-4">
+             <FadeSlide direction={"right"}  delay={100}duration={2}>
             <Select value={filterBy} onValueChange={handleFilter}>
               <SelectTrigger className="w-40">
                 <Filter className="h-4 w-4 mr-2" />
@@ -182,7 +187,8 @@ const Products = () => {
                 <SelectItem value="exclusive">Exclusive</SelectItem>
               </SelectContent>
             </Select>
-            
+            </FadeSlide>
+             <FadeSlide direction={"right"}  delay={100}duration={2}>
             <Select value={sortBy} onValueChange={handleSort}>
               <SelectTrigger className="w-40">
                 <SelectValue placeholder="Ordenar por" />
@@ -194,6 +200,7 @@ const Products = () => {
                 <SelectItem value="rating">Avaliação</SelectItem>
               </SelectContent>
             </Select>
+            </FadeSlide>
           </div>
         </div>
 
@@ -201,6 +208,7 @@ const Products = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProducts.map((product, index) => (
             <ScrollReveal key={product.id} delay={index * 100}>
+                <FadeSlideUp delay={200}>
               <Card className="group overflow-hidden bg-secondary/20 border-border/20 hover:glow-box transition-all duration-500">
                 <div className="relative overflow-hidden">
                   <img 
@@ -262,6 +270,7 @@ const Products = () => {
                   </div>
                 </div>
               </Card>
+              </FadeSlideUp>
             </ScrollReveal>
           ))}
         </div>
